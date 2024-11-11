@@ -4,7 +4,7 @@ import { assets } from '../../assets/assets';
 import { Link } from 'react-router-dom';
 import { StoreContext } from '../../Context/StoreContext';  // Assuming you're using a context for the store
 
-const Navbar = () => {
+const Navbar = ({setShowLogin}) => {
     const [menu, setMenu] = useState("Home");
 
     const { getTotalCartAmount } = useContext(StoreContext);
@@ -26,7 +26,7 @@ const Navbar = () => {
                     </Link>
                     <div className={getTotalCartAmount() !== 0 ? "dot" : ""}></div>
                 </div>
-                <button>Sign In</button>
+                <button onClick={()=>setShowLogin(true)}>Sign In</button>
             </div>
         </div>
     );

@@ -1,22 +1,23 @@
-import  express  from "express";
-import { addFood,listFood ,removeFood} from "../controllers/foodController.js";
+import express from "express";
 import multer from "multer";
+import { addFood, listFood, removeFood } from "../controllers/foodController.js";
 
-const foodRouter =express.Router();
+const router = express.Router();
 
-//image storage engine
-
-const storage=multer.diskStorage({
-    destination:"uploads",
-    filename:(req,file,cb)=>{
-        return cb(null,`${Date.now()}$(file.originalname)`)
+// Configure Multer
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, "uploads/"); // Destination folder
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + "-" + file.originalname); // Filename format
     }
-})
+});
+const upload = multer({ storage: storage });
 
-const upload=multer({storage:storage})
+// Routes
+router.post("/add", upload.single("image"), addFood); // File upload
+router.get("/list", listFood);
+router.delete("/remove", removeFood);
 
-foodRouter.post("/add",upload.single("image"),addFood);
-foodRouter.get("/list",listFood);
-foodRouter.post("/remove",removeFood);
-
-export default foodRouter;
+export default router;

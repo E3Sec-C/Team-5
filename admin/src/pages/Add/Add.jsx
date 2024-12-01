@@ -1,11 +1,14 @@
 import React from 'react'
 import './Add.css'
+import { useState } from 'react'
 import { assets } from '../../assets/assets'
 import axios from "axios"
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const Add = () => {
+const Add = ({url}) => {
 
-    const url = "http://localhost:4000";
+    //const url = "http://localhost:4000";
     const [image,setImage] = useState(false);
     const[data,setData] = useState({
         name:"",
@@ -81,7 +84,7 @@ const Add = () => {
                         <input onChange={onChangeHandler} value={data.price} type="Number" name='price' placeholder='$20' />
                     </div>
                 </div>
-                <button type='sumit' className='add-btn' >ADD</button>
+                <button type='submit' className='add-btn' >ADD</button>
             </form>
         </div>
     )

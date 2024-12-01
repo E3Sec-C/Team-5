@@ -9,6 +9,16 @@ const PlaceOrder = () => {
           <input type="text" placeholder='First name'/>
           <input type="text" placeholder='Last name' />
         </div>
+        <input type="email" placeholder='Email address'/>
+        <input type="text" placeholder='Street' />
+        <div className="multi-fields">
+          <input type="text" placeholder='City'/>
+          <input type="text" placeholder='State' />
+        </div>
+        <div className="multi-fields">
+          <input type="text" placeholder='Zip code'/>
+          <input type="text" placeholder='Last name' />
+        </div>
       </div>
     </form>
   )

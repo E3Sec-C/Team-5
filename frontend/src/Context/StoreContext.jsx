@@ -5,18 +5,6 @@ import axios from "axios"
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
-
-  const [cartItems, setCartItems] = useState({});
-  const url="http://localhost:4000"
-  const [token,setToken]=useState("");
-  //const [food_list,setFoodList]=useState([])
-
-  // Function to add an item to the cart
-  const addToCart = (itemId) => {
-    if (!cartItems[itemId]) {
-      setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
-    } else {
-      setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
   const [cartItems, setCartItems] = useState({}); // State for cart items
 
   // Function to add an item to the cart
@@ -31,7 +19,6 @@ const StoreContextProvider = (props) => {
     /*
     if (token) {
       await axios.post(url + "/api/cart/add", { itemId }, { headers: { token } });
-main
     }
     */
   };
@@ -64,11 +51,6 @@ main
   };*/
   const getTotalCartAmount = () => {
     let totalAmount = 0;
-dev2
-    for (const item in cartItems) {
-      if (cartItems[item] > 0) {
-        let itemInfo = food_list.find((product) => product._id === item);
-
   
     // Log cartItems and food_list for debugging
     //console.log('Cart Items:', cartItems);
@@ -93,7 +75,6 @@ dev2
         // Log each item being processed
         console.log(`Processing item ID: ${itemId}, Quantity: ${quantity}, Item Info:`, itemInfo);
   
- main
         if (itemInfo) {
           totalAmount += itemInfo.price * quantity;
         } else {
@@ -108,25 +89,6 @@ dev2
     // Return the total amount
     return totalAmount;
   };
- dev2
-  /*const fetchFoodList=async()=>{
-    const response=await axios.get("/api/food/list");
-    setFoodList(response.data.data)
-  }*/
-  useEffect(()=>{
-    
-      //async function loadData(){
-        //await fetchFoodList();
-      if(localStorage.getItem("token")){
-        setToken(localStorage.getItem("token"));
-      }
-    
-    //loadData();
-    
-  },[])
-
-  
-main
 
   // Context value to provide
   const contextValue = {
@@ -136,9 +98,6 @@ main
     addToCart,
     removeFromCart,
     getTotalCartAmount,
-    url,
-    token,
-    setToken
   };
 
   return (
